@@ -1,10 +1,3 @@
-<?php
-    $str = "LaPlateforme";
-    $int = 6;
-    $bool = true;
-    $float = 12.3
-?>
-
 <html>
     <head>
         <title>PHP Test</title>
