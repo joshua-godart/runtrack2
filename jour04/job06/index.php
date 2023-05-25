@@ -13,16 +13,13 @@
         <input type="submit" value="Valider">
     </form>
     <?php
-        if($_SERVER['REQUEST_METHOD']==='GET'){
-            $count = 0;
-            foreach($_GET as $key => $value){
-                if ($value % 2 == 0) {
-                    echo $value . " est un nombre paire";
-                    } else {
-                    echo $value . " est un nombre impaire";
-                    }
+        foreach($_GET as $key => $value){
+            if ($value % 2 == 0) {
+                echo $value . " est un nombre paire";
+                } else {
+                echo $value . " est un nombre impaire";
                 }
-        }
+            }
     ?>
 </body>
 </html>
