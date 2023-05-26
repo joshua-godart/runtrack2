@@ -1,50 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 <body>
+  <h2>Construction de maison</h2>
+  <form method="GET" action="">
 
-<form method="get" action="">
-  Largeur: <input type="text" name="largeur"><br>
-  Hauteur: <input type="text" name="hauteur"><br>
-  <input type="submit" value="Construire la maison">
-</form>
+    <label for="hauteur">Hauteur :</label>
+    <input type="text" id="hauteur" name="hauteur" required><br><br>
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["largeur"]) && isset($_GET["hauteur"])) {
-    $largeur = intval($_GET["largeur"]);
-    $hauteur = intval($_GET["hauteur"]);
+    <label for="largeur">Largeur :</label>
+    <input type="text" id="largeur" name="largeur" required><br><br>
 
-    // Dessiner le toit de la maison
-    for ($i = 0; $i < $hauteur; $i++) {
-        for ($j = 0; $j < $largeur - $i; $j++) {
-            echo "&nbsp;";
-        }
-        echo "/";
-        for ($j = 0; $j < 2*$i; $j++) {
-            echo "&nbsp;";
-        }
-        echo "\\";
-        echo "<br>";
-    }
+    <input type="submit" value="Construire">
+  </form>
 
-    // Dessiner le corps de la maison
-    for ($i = 0; $i < $hauteur; $i++) {
-        echo "|";
-        for ($j = 1; $j < $largeur; $j++) {
-            echo "&nbsp;";
-        }
-        echo "|";
-        echo "<br>";
-    }
+  <?php
+  if (isset($_GET['largeur']) && isset($_GET['hauteur'])) {
+      $largeur = $_GET['largeur'];
+      $hauteur = $_GET['hauteur'];
 
-    // Dessiner le sol de la maison
-    echo "&nbsp;";
-    for ($i = 0; $i < $largeur; $i++) {
-        echo "_";
-    }
-    echo "&nbsp;";
-    echo "<br>";
-}
-?>
+      // Construction de la maison
+      $toit = "";
+      $murs = "";
+      $base = "";
 
+      // Construction du toit
+      for ($i = 0; $i < $hauteur; $i++) {
+          $toit .= str_repeat(" ", $hauteur - $i - 1) . "/" . str_repeat(" ", $i * 2) . "\\" . "\n";
+      }
+
+      // Construction des murs
+      for ($i = 0; $i < $hauteur; $i++) {
+          $murs .= "|" . str_repeat(" ", $largeur - 2) . "|" . "\n";
+      }
+
+      // Construction de la base
+      $base = "+" . str_repeat("_", $largeur - 2) . "+";
+
+      // Affichage de la maison
+      echo "<pre>";
+      echo $toit;
+      echo $murs;
+      echo $base;
+      echo "</pre>";
+  }
+  ?>
 </body>
 </html>
