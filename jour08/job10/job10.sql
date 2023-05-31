@@ -1,0 +1,1 @@
+select sum(superficie) as superficie_totale from etages;
